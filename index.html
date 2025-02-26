@@ -1,106 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- coding Credit to  @_.codedevotee -->
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Register form</title>
-
-    <!--Boxicons CDN-->
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' 
-    rel='stylesheet'>
-
-    <!--Custom CSS-->
-    <link rel="stylesheet" href="style.css">
-
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
 </head>
-
 <body>
-    <!-- FOR SOURCE CODE COMMENT "CODE" -->
-
-    <div class="wrapper">
-        <span class="rotate-bg"></span>
-        <span class="rotate-bg2"></span>
-
-        <div class="form-box login">
-            <h2 class="title animation" style="--i:0; --j:21">Login</h2>
-            <form action="#">
-
-                <div class="input-box animation" style="--i:1; --j:22">
-                    <input type="text" required>
-                    <label for="">Username</label>
-                    <i class='bx bxs-user'></i>
-                </div>
-
-                <div class="input-box animation" style="--i:2; --j:23">
-                    <input type="password" required>
-                    <label for="">Password</label>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-
-                <button type="submit" class="btn animation" style="--i:3; --j:24">Login</button>
-
-                <div class="linkTxt animation" style="--i:5; --j:25">
-                    <p>Don't have an account? <a href="#" class="register-link">Sign Up</a></p>
-                </div>
-
-            </form>
+    <header>
+        <h1>Login Here</h1>
+    </header>
+    <section class="form-container">
+        <h2>Select Login Type</h2>
+        <div class="role-selection">
+            <button id="userLoginBtn" class="role-btn">User Login</button>
+            <button id="adminLoginBtn" class="role-btn">Admin Login</button>
         </div>
 
-        <div class="info-text login">
-            <h2 class="animation" style="--i:0; --j:20">Welcome Back!</h2>
-            <p class="animation" style="--i:1; --j:21">Code with patel Welcome you to Our lovely Family thanks For joining</p>
-        </div>
+        <form id="loginForm" class="hidden">
+            <h2 id="formTitle">Login to Your Account</h2>
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            <input type="password" id="loginPassword" placeholder="Password" required>
+            <button type="submit">Login</button>
+            <p><a href="forget.html" class="forgot-password">Forgot Password?</a></p>
+        </form>
+        
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </section>
 
+    <script>
+        document.getElementById("userLoginBtn").addEventListener("click", function() {
+            document.getElementById("formTitle").innerText = "User Login";
+            document.getElementById("loginForm").classList.remove("hidden");
+        });
 
-
-
-
-
-
-        <div class="form-box register">
-
-            <h2 class="title animation" style="--i:17; --j:0">Sign Up</h2>
-
-            <form action="#">
-
-                <div class="input-box animation" style="--i:18; --j:1">
-                    <input type="text" required>
-                    <label for="">Username</label>
-                    <i class='bx bxs-user'></i>
-                </div>
-
-                <div class="input-box animation" style="--i:19; --j:2">
-                    <input type="email" required>
-                    <label for="">Email</label>
-                    <i class='bx bxs-envelope'></i>
-                </div>
-
-                <div class="input-box animation" style="--i:20; --j:3">
-                    <input type="password" required>
-                    <label for="">Password</label>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-
-                <button type="submit" class="btn animation" style="--i:21;--j:4">Sign Up</button>
-
-                <div class="linkTxt animation" style="--i:22; --j:5">
-                    <p>Already have an account? <a href="#" class="login-link">Login</a></p>
-                </div>
-
-            </form>
-        </div>
-
-        <div class="info-text register">
-            <h2 class="animation" style="--i:17; --j:0;">Code with patel</h2>
-            <p class="animation" style="--i:18; --j:1;">Get more tutorial video on our channel and also Subscribe to our channel</p>
-        </div>
-
-    </div>
-
-    <!--Script.js-->
-    <script src="script.js"></script>
+        document.getElementById("adminLoginBtn").addEventListener("click", function() {
+            document.getElementById("formTitle").innerText = "Admin Login";
+            document.getElementById("loginForm").classList.remove("hidden");
+        });
+    </script>
 </body>
-
-</html> 
+</html>
