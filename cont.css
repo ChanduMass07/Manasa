@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 100px;
+    padding: 20px;
+    background-image: url(green.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+h2 {
+    font-size: 24px;
+    text-align: center;
+    color: #1f7429;
+    animation: pulse 1.5s infinite;
+}
+
+/* Move the entire form slightly down */
+.container {
+    max-width: 400px;
+    margin: auto;
+    margin-top: 70px; /* Adjust this value to move it further down */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.358);
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.4);
+    text-align: center; /* Center text inside the container */
+}
+
+
+/* Center Labels */
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    text-align: center; /* Center the labels */
+}
+
+/* Center Inputs */
+input,
+textarea {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #092408;
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #092408;
+    display: block;
+    margin: auto; /* Center input fields */
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #1f7429;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #092408;
+}
+
+#response {
+    margin-top: 10px;
+    border: 2px solid #092408;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgba(31, 116, 41, 0.5);
+    width: 90%;
+    color: black;
+    text-align: center; /* Center response text */
+}
+
+#response strong {
+    margin-bottom: 5px;
+    display: block;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
