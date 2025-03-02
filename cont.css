@@ -73,11 +73,12 @@ button:hover {
     width: 90%;
     color: black;
     text-align: center; /* Center response text */
+    display:contents;
 }
 
 #response strong {
     margin-bottom: 5px;
-    display:none;
+   
 }
 
 @keyframes pulse {
