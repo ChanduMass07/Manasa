@@ -1,77 +1,15 @@
 /* General styles */
 body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #cce5ff, #99c2ff, #66a3ff, #3385ff);
-    color: #fff;
-    text-align: center;
-    margin: 0;
-    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 100px;
+    padding: 20px;
+    background-image: url(green.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Beautiful moving circles */
-@keyframes moveCircles {
-    0% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
-    50% { transform: translateY(-50px) translateX(30px) scale(1.2); opacity: 0.9; }
-    100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.7; }
-}
-
-.circle {
-    position: absolute;
-    border-radius: 50%;
-    opacity: 0.6;
-    animation: moveCircles 8s infinite ease-in-out alternate;
-}
-
-.circle:nth-child(1) {
-    width: 120px;
-    height: 120px;
-    background: rgba(255, 255, 255, 0.4);
-    top: 10%;
-    left: 15%;
-    animation-duration: 9s;
-}
-
-.circle:nth-child(2) {
-    width: 180px;
-    height: 180px;
-    background: rgba(255, 255, 255, 0.3);
-    top: 50%;
-    left: 70%;
-    animation-duration: 11s;
-}
-
-.circle:nth-child(3) {
-    width: 150px;
-    height: 150px;
-    background: rgba(255, 255, 255, 0.35);
-    top: 30%;
-    left: 50%;
-    animation-duration: 10s;
-}
-
-.circle:nth-child(4) {
-    width: 90px;
-    height: 90px;
-    background: rgba(255, 255, 255, 0.4);
-    top: 80%;
-    left: 30%;
-    animation-duration: 12s;
-}
-
-.circle:nth-child(5) {
-    width: 130px;
-    height: 130px;
-    background: rgba(255, 255, 255, 0.5);
-    top: 15%;
-    left: 75%;
-    animation-duration: 13s;
 }
 
 /* Header styles */
@@ -84,23 +22,21 @@ header {
     background: rgba(0, 0, 0, 0.3);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     animation: fadeIn 1s ease-in-out;
+    text-align: center;
 }
 
 header h1 {
-    margin: 0;
+    margin-bottom: 20px; /* Added space below h1 */
     font-size: 26px;
 }
 
-nav a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 18px;
-    margin-left: 20px;
-    transition: color 0.3s;
-}
-
-nav a:hover {
-    color: #ffef82;
+/* Centered content container */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px; /* Adds slight gap between all elements */
 }
 
 /* Form container */
@@ -110,16 +46,20 @@ nav a:hover {
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     width: 350px;
-    animation: slideUp 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
 }
 
 .form-container h2 {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     font-size: 24px;
     color: #333;
 }
 
-/* Form inputs */
+/* Inputs */
 input {
     width: 100%;
     padding: 14px;
@@ -127,18 +67,13 @@ input {
     border: none;
     border-radius: 7px;
     font-size: 16px;
-    transition: transform 0.3s ease, box-shadow 0.3s;
-    color: #333;
 }
 
-input:focus {
-    transform: scale(1.05);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
+/* Button */
 button {
     width: 100%;
     padding: 14px;
+    margin-top: 10px;
     background: linear-gradient(135deg, #66a3ff, #3385ff);
     border: none;
     color: #fff;
@@ -150,36 +85,5 @@ button {
 
 button:hover {
     background: linear-gradient(135deg, #3385ff, #66a3ff);
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
-
-/* Register link */
-p {
-    margin-top: 15px;
-    font-size: 16px;
-    color: #333;
-    animation: fadeIn 2s ease-in-out;
-}
-
-p a {
-    color: #3385ff;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-p a:hover {
-    text-decoration: underline;
-    color: #66a3ff;
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes slideUp {
-    from { transform: translateY(50px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
