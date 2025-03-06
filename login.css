@@ -87,3 +87,19 @@ button:hover {
     background: linear-gradient(135deg, #3385ff, #66a3ff);
     transform: scale(1.05);
 }
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    color: gray;
+}
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px;
+}

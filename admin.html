@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - Banking System</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="script.js"></script>
+    <style>
+    body {
+    font-family: 'Poppins', sans-serif;
+    background: url('rg.webp') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    transition: background 0.3s ease-in-out;
+}
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, #2b5876, #4e4376);
+            color: white;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .main-content {
+            flex: 1;
+            padding: 20px;
+            position: relative;
+        }
+        .dashboard-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+        .dashboard-card:hover {
+            transform: scale(1.05);
+        }
+        .profile-container {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+        .profile-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .profile-button img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #ff8c00;
+            transition: transform 0.3s;
+        }
+        .profile-button img:hover {
+            transform: scale(1.1);
+        }
+        .admin-profile {
+            display: none;
+            position: absolute;
+            top: 70px;
+            right: 0;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .admin-profile.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .admin-profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+        .admin-profile h3 {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .admin-profile p {
+            font-size: 14px;
+            color: #555;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul class="list-group">
+            <li class="list-group-item"><button class="btn btn-dark w-100">Dashboard</button></li>
+            <li class="list-group-item"><button class="btn btn-dark w-100">Users</button></li>
+            <li class="list-group-item"><button class="btn btn-dark w-100">Transactions</button></li>
+            <li class="list-group-item"><button class="btn btn-dark w-100">Loans</button></li>
+            <li class="list-group-item"><button class="btn btn-dark w-100">Cards</button></li>
+            <li class="list-group-item">
+                <button class="btn btn-dark w-100" onclick="window.location.href='index.html'">LogOut</button>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="profile-container">
+            <button class="profile-button" onclick="toggleAdminProfile(event)">
+                <img src="admin.jpg" alt="Admin Profile Picture">
+            </button>
+            <div class="admin-profile" id="admin-profile">
+                <img src="admin.jpg" alt="Admin Profile Picture">
+                <h3>Manu.Ms</h3>
+                <p><strong>Role:</strong> Super Admin</p>
+                <p><strong>Mobile No:</strong> 7175372621</p>
+                <p><strong>Email:</strong> Manu77@gmail.com</p>
+                <p><strong>Address:</strong> Sidharth Nagar 4th cross, Maddur-571428</p>
+            </div>
+        </div>
+        <h1>Welcome, Manu</h1>
+        <div class="dashboard-card">
+            <h3>Total Users</h3>
+            <p id="total-users">Loading...</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>Total Transactions</h3>
+            <p id="total-transactions">Loading...</p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.addEventListener("click", function (event) {
+                var profile = document.getElementById("admin-profile");
+                var profileButton = document.querySelector(".profile-button");
+
+                if (!profile.contains(event.target) && !profileButton.contains(event.target)) {
+                    profile.classList.remove("active");
+                }
+            });
+        });
+
+        function toggleAdminProfile(event) {
+            event.stopPropagation(); // Prevent immediate closing when clicking the button
+            var profile = document.getElementById("admin-profile");
+            profile.classList.toggle("active");
+        }
+    </script>
+</body>
+</html>
