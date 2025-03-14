@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="C:\Users\Chand\OneDrive\Documents\GitHub\Manasa\Style\login.css">
+    <style>
+        .password-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding-right: 40px;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            cursor: pointer;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Login Here</h1>
+    </header>
+    <section class="form-container">
+        <h2>Select Login Type</h2>
+        <div class="role-selection">
+            <button id="userLoginBtn" class="role-btn">User Login</button>
+            <button id="adminLoginBtn" class="role-btn">Admin Login</button>
+        </div>
+
+        <form id="loginForm" class="hidden">
+            <h2 id="formTitle">Login to Your Account</h2>
+            <input type="email" id="loginEmail" placeholder="Email" required>
+            
+            <div class="password-container">
+                <input type="password" id="loginPassword" placeholder="Password" required>
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+            </div>
+
+            <button type="submit">Login</button>
+            <p><a href="C:\Users\Chand\OneDrive\Documents\GitHub\Manasa\Structure\forget.html" class="forgot-password">Forgot Password?</a></p>
+        </form>
+        
+        <p>Don't have an account? <a href="C:\Users\Chand\OneDrive\Documents\GitHub\Manasa\Structure\register.html">Register here</a></p>
+        <a href="userpanel.html">Demo</a>
+    </section>
+
+    <script>
+        let loginType = ""; // Track login type (admin/user)
+
+        document.getElementById("userLoginBtn").addEventListener("click", function() {
+            loginType = "user"; 
+            document.getElementById("formTitle").innerText = "User Login";
+            document.getElementById("loginForm").classList.remove("hidden");
+        });
+
+        document.getElementById("adminLoginBtn").addEventListener("click", function() {
+            loginType = "admin";
+            document.getElementById("formTitle").innerText = "Admin Login";
+            document.getElementById("loginForm").classList.remove("hidden");
+        });
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            const email = document.getElementById("loginEmail").value;
+            const password = document.getElementById("loginPassword").value;
+
+            if (loginType === "admin") {
+                // ✅ Static Admin Login
+                const staticAdminEmail = "Manuking1718@gmail.com";
+                const staticAdminPassword = "Manu@777";
+
+                if (email === staticAdminEmail && password === staticAdminPassword) {
+                    alert("Admin Login Successful!");
+                    window.location.href = "admin.html"; // Redirect admin
+                } else {
+                    alert("Invalid Admin Email or Password!");
+                }
+            } else if (loginType === "user") {
+                // ✅ Dynamic User Login (API-based)
+                fetch("https://example.com/api/user-login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, password })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("User Login Successful!");
+                        window.location.href = "user_dashboard.html"; // Redirect user
+                    } else {
+                        alert("Invalid User Email or Password!");
+                    }
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                    alert("Login failed! Please try again.");
+                });
+            }
+        });
+
+        // ✅ Password Show/Hide Function
+        function togglePassword() {
+            const passwordField = document.getElementById("loginPassword");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+            } else {
+                passwordField.type = "password";
+            }
+        }
+    </script>
+</body>
+</html>
