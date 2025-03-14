@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Management Control</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+    <!-- Header -->
+    <div class="p-5 bg-blue-600 text-white text-center text-2xl font-bold">
+        Loan Management Control
+    </div>
+
+    <!-- Dashboard Buttons -->
+    <div class="grid grid-cols-3 gap-6 p-5 text-center">
+        <button class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white p-5 rounded-lg shadow-lg text-xl font-bold" onclick="window.location.href=' '" id="pending-loans">Pending Loans: 0</button>
+        <button class="bg-gradient-to-r from-green-400 to-green-600 text-white p-5 rounded-lg shadow-lg text-xl font-bold"  onclick="window.location.href=' ' id="approved-loans">Approved Loans: 0</button>
+        <button class="bg-gradient-to-r from-red-400 to-red-600 text-white p-5 rounded-lg shadow-lg text-xl font-bold"  onclick="window.location.href=' ' id="rejected-loans">Rejected Loans: 0</button>
+    </div>
+
+    <!-- Loan Applications -->
+    <div class="p-5">
+        <h2 class="text-xl font-bold mb-4">Loan Applications</h2>
+        <div id="loan-buttons" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <!-- Dynamic Loan Buttons -->
+        </div>
+    </div>
+
+    <!-- Loan Analytics (Chart.js) -->
+    <div class="p-5">
+        <h2 class="text-xl font-bold mb-4">Loan Statistics</h2>
+        <canvas id="loanChart"></canvas>
+    </div>
+
+    <script>
+        const API_URL = "https://your-backend-api.com/loans"; // Replace with actual backend API
+
+        async function fetchLoans() {
+            try {
+                let response = await fetch(API_URL);
+                let loans = await response.json();
+
+                let pending = 0, approved = 0, rejected = 0;
+                let loanButtons = document.getElementById("loan-buttons");
+                loanButtons.innerHTML = ""; 
+
+                loans.forEach(loan => {
+                    let statusColor = loan.status === "Approved" ? "from-green-400 to-green-600" :
+                                      loan.status === "Rejected" ? "from-red-400 to-red-600" : "from-yellow-400 to-yellow-600";
+                    let btn = `<button class="bg-gradient-to-r ${statusColor} text-white p-4 rounded-lg shadow-lg w-full font-bold" onclick="updateLoan(${loan.id}, '${loan.status}')">
+                        ${loan.user} - $${loan.amount} (${loan.status})
+                    </button>`;
+                    loanButtons.innerHTML += btn;
+
+                    if (loan.status === "Pending") pending++;
+                    else if (loan.status === "Approved") approved++;
+                    else if (loan.status === "Rejected") rejected++;
+                });
+
+                document.getElementById("pending-loans").innerText = `Pending Loans: ${pending}`;
+                document.getElementById("approved-loans").innerText = `Approved Loans: ${approved}`;
+                document.getElementById("rejected-loans").innerText = `Rejected Loans: ${rejected}`;
+                updateChart(pending, approved, rejected);
+            } catch (error) {
+                console.error("Error fetching loan data:", error);
+            }
+        }
+
+        async function updateLoan(loanId, currentStatus) {
+            let newStatus = currentStatus === "Pending" ? "Approved" : "Rejected";
+            try {
+                let response = await fetch(`${API_URL}/${loanId}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ status: newStatus })
+                });
+
+                if (response.ok) {
+                    alert(`Loan ${newStatus} Successfully!`);
+                    fetchLoans(); // Refresh loan data dynamically
+                } else {
+                    alert("Error updating loan status.");
+                }
+            } catch (error) {
+                console.error("Error updating loan:", error);
+            }
+        }
+
+        function updateChart(pending, approved, rejected) {
+            const ctx = document.getElementById('loanChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['Pending', 'Approved', 'Rejected'],
+                    datasets: [{
+                        label: 'Loan Status',
+                        data: [pending, approved, rejected],
+                        backgroundColor: ['yellow', 'green', 'red']
+                    }]
+                }
+            });
+        }
+
+        fetchLoans();
+    </script>
+</body>
+</html>

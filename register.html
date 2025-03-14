@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
-    <link rel="stylesheet" href="C:\Users\Chand\OneDrive\Documents\GitHub\Manasa\Style\register.css">
+    <link rel="stylesheet" href="register.css">
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
 </head>
@@ -16,8 +16,10 @@
     <section class="form-container">
         <h2>Create an Account</h2>
         <form id="registerForm">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" placeholder="Full Name" required>
+            <label for="name">First Name</label>
+            <input type="text" id="name" placeholder="First Name" required>
+            <label for="name">Last Name</label>
+            <input type="text" id="name" placeholder="Last Name" required>
 
             <label for="father-name">Father's Name</label>
             <input type="text" id="father-name" placeholder="Father's Name" required>
@@ -27,6 +29,12 @@
 
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="Email" required>
+
+            <label for="name">password</label>
+            <input type="password" id="Password" placeholder="Password" required>
+
+            <label for="name">*Confirm password</label>
+            <input type="password" id="Password" placeholder="*Confirm Password" required>
 
             <label for="phone">Phone Number</label>
             <input type="tel" id="phone" placeholder="Phone Number" required>
