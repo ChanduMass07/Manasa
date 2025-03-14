@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="C:\Users\Chand\OneDrive\Documents\GitHub\Manasa\Style\register.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Register</h1>
+    </header>
+    
+    <section class="form-container">
+        <h2>Create an Account</h2>
+        <form id="registerForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" placeholder="Full Name" required>
+
+            <label for="father-name">Father's Name</label>
+            <input type="text" id="father-name" placeholder="Father's Name" required>
+
+            <label for="profile-photo">Profile Photo</label>
+            <input type="file" id="profile-photo" accept="image/*" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="Email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="Phone Number" required>
+            <div id="recaptcha-container"></div>
+            <button type="button" id="sendOtp">Send OTP</button>
+
+            <label for="otp">Enter OTP</label>
+            <input type="text" id="otp" placeholder="Enter OTP">
+            <button type="button" id="verifyOtp">Verify OTP</button>
+
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="index.html">Login here</a></p>
+    </section>
+
+    <script src="register.js"></script>
+</body>
+</html>

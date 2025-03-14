@@ -4,13 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - Banking System</title>
-    <link rel="stylesheet" href="styles.css">
+   
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+   
+    <link rel="stylesheet" href="C:\Users\Chand\OneDrive\Documents\GitHub\Manasa\Style\jaman.css" >
     <script defer src="script.js"></script>
     <style>
     body {
     font-family: 'Poppins', sans-serif;
     background: url('rg.webp') no-repeat center center fixed;
+    background-image: url(rg.webp);
     background-size: cover;
     margin: 0;
     padding: 0;
@@ -95,6 +99,40 @@
             color: #555;
             margin: 5px 0;
         }
+        .btn-neon {
+            position: relative;
+            display: inline-block;
+            padding: 12px 20px;
+            color: white;
+            border: 2px solid #00eaff;
+            text-transform: uppercase;
+            font-size: 16px;
+            border-radius: 8px;
+            transition: 0.3s;
+            overflow: hidden;
+        }
+        .btn-neon::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300%;
+            height: 300%;
+            background: rgba(0, 234, 255, 0.2);
+            transition: 0.3s;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            z-index: 0;
+        }
+        .btn-neon:hover::before {
+            width: 0;
+            height: 0;
+        }
+        .btn-neon:hover {
+            background: #00eaff;
+            color: #111;
+            box-shadow: 0 0 15px #00eaff;
+        }
     </style>
 </head>
 <body>
@@ -105,37 +143,43 @@
             <li class="list-group-item"><button class="btn btn-dark w-100">Users</button></li>
             <li class="list-group-item"><button class="btn btn-dark w-100">Transactions</button></li>
             <li class="list-group-item"><button class="btn btn-dark w-100">Loans</button></li>
-            <li class="list-group-item"><button class="btn btn-dark w-100">Cards</button></li>
+           
             <li class="list-group-item">
                 <button class="btn btn-dark w-100" onclick="window.location.href='index.html'">LogOut</button>
             </li>
             
         </ul>
     </div>
-    <div class="main-content">
-        <div class="profile-container">
-            <button class="profile-button" onclick="toggleAdminProfile(event)">
-                <img src="admin.jpg" alt="Admin Profile Picture">
-            </button>
-            <div class="admin-profile" id="admin-profile">
+    <div class="profile-container">
+        <button class="profile-button" onclick="openProfile()">
+            <img src="admin.jpg" alt="Admin Profile Picture">
+        </button>
+        <div class="profile-overlay" id="profile-overlay" onclick="closeProfile()"></div>
+        <div class="admin-profile full-screen" id="admin-profile">
+            <button class="close-btn" onclick="closeProfile()">✖</button>
+            <div class="profile-header">
                 <img src="admin.jpg" alt="Admin Profile Picture">
                 <h3>Manu.Ms</h3>
-                <p><strong>Role:</strong> Super Admin</p>
-                <p><strong>Mobile No:</strong> 7175372621</p>
-                <p><strong>Email:</strong> Manu77@gmail.com</p>
-                <p><strong>Address:</strong> Sidharth Nagar 4th cross, Maddur-571428</p>
+                <p class="role">Super Admin</p>
+            </div>
+            <div class="profile-body">
+                <div class="profile-info">
+                    <i class="fas fa-phone"></i>
+                    <p><strong>Mobile No:</strong> 7175372621</p>
+                </div>
+                <div class="profile-info">
+                    <i class="fas fa-envelope"></i>
+                    <p><strong>Email:</strong> Manu77@gmail.com</p>
+                </div>
+                <div class="profile-info">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p><strong>Address:</strong> Sidharth Nagar 4th cross, Maddur-571428</p>
+                </div>
             </div>
         </div>
-        <h1>Welcome, Manu</h1>
-        <div class="dashboard-card">
-            <h3>Total Users</h3>
-            <p id="total-users">Loading...</p>
-        </div>
-        <div class="dashboard-card">
-            <h3>Total Transactions</h3>
-            <p id="total-transactions">Loading...</p>
-        </div>
     </div>
+    
+     <marquee behavior="scroll" direction="right" class="Cs" >Welcome To Manasa Admin Dashboard</marquee>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.addEventListener("click", function (event) {
@@ -153,6 +197,19 @@
             var profile = document.getElementById("admin-profile");
             profile.classList.toggle("active");
         }
+        function openProfile() {
+    document.getElementById("profile-overlay").style.display = "block";
+    document.getElementById("admin-profile").classList.add("active");
+}
+
+function closeProfile() {
+    document.getElementById("profile-overlay").style.display = "none";
+    document.getElementById("admin-profile").classList.remove("active");
+}
+
+// Close the profile when clicking outside of it
+document.getElementById("profile-overlay").addEventListener("click", closeProfile);
+
     </script>
 </body>
 </html>

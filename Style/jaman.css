@@ -1,0 +1,166 @@
+/* Full-Screen Profile Modal with Elegant Background */
+.profile-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #cad2d1, #d5d8da); /* Deep Blue & Space Gray */
+    backdrop-filter: blur(12px);
+    z-index: 999;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Animated Profile Modal */
+.admin-profile.full-screen {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    width: 90%;
+    max-width: 450px;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b); /* Rich Pink to Vibrant Orange */
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(255, 65, 108, 0.6);
+    text-align: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.5s ease, transform 0.4s ease-in-out;
+}
+
+/* Animation when profile is active */
+.admin-profile.full-screen.active {
+    display: block;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+/* Close Button - Futuristic Hover Effect */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 26px;
+    cursor: pointer;
+    color: #ffffff;
+    transition: transform 0.3s ease, color 0.3s;
+}
+
+.close-btn:hover {
+    color: #ffeb3b;
+    transform: rotate(180deg);
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Profile Picture with Neon Glow */
+.profile-header img {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    border: 3px solid #ffeb3b;
+    box-shadow: 0px 0px 20px rgba(255, 235, 59, 0.8);
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-header img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Profile Name */
+.profile-header h3 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+    color: #ffffff;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+}
+/* Super Admin Text - Ultra Highlighted with Contrasting Colors */
+.profile-header .role {
+    font-size: 18px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #00eaff, #5a00ff, #ff00ff); /* Cyan → Deep Blue → Neon Purple */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 12px rgba(0, 234, 255, 0.8), 
+                 3px 3px 20px rgba(90, 0, 255, 0.8);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    animation: pulse-glow 1.5s infinite alternate ease-in-out;
+}
+
+/* Glow Pulse Animation */
+@keyframes pulse-glow {
+    0% {
+        text-shadow: 0px 0px 10px rgba(0, 234, 255, 0.8);
+    }
+    100% {
+        text-shadow: 0px 0px 25px rgba(255, 0, 255, 1);
+    }
+}
+
+
+
+
+
+/* Profile Details */
+.profile-body {
+    padding: 20px 0;
+}
+
+/* Profile Information Blocks */
+.profile-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background: linear-gradient(135deg, #4b79a1, #2c3e50); /* Smooth Blue-Gray Blend */
+    border-radius: 10px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease-in-out, background 0.3s ease-in-out;
+}
+
+.profile-info:hover {
+    transform: translateX(5px) scale(1.05);
+    background: linear-gradient(135deg, #ff4b2b, #ff416c); /* Bright Neon Effect */
+    box-shadow: 0 0 15px rgba(255, 65, 108, 0.5);
+}
+
+/* Icons */
+.profile-info i {
+    font-size: 20px;
+    background: linear-gradient(135deg, #ffeb3b, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    transition: background 0.3s ease;
+}
+
+.profile-info:hover i {
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Profile Text */
+.profile-info p {
+    font-size: 16px;
+    font-weight: 500;
+    background: linear-gradient(90deg, #ffeb3b, #ff4b2b);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.cs{
+    color: #060606;
+}
