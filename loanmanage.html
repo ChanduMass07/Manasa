@@ -8,17 +8,19 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white">
+
     <!-- Header -->
     <div class="p-5 bg-blue-600 text-white text-center text-2xl font-bold">
         Loan Management Control
     </div>
-
+    <!-- Close Button -->
     <!-- Dashboard Buttons -->
     <div class="grid grid-cols-3 gap-6 p-5 text-center">
         <button class="bg-gradient-to-r from-yellow-400 to-yellow-600 text-white p-5 rounded-lg shadow-lg text-xl font-bold" onclick="window.location.href=' '" id="pending-loans">Pending Loans: 0</button>
         <button class="bg-gradient-to-r from-green-400 to-green-600 text-white p-5 rounded-lg shadow-lg text-xl font-bold"  onclick="window.location.href=' ' id="approved-loans">Approved Loans: 0</button>
         <button class="bg-gradient-to-r from-red-400 to-red-600 text-white p-5 rounded-lg shadow-lg text-xl font-bold"  onclick="window.location.href=' ' id="rejected-loans">Rejected Loans: 0</button>
     </div>
+    
 
     <!-- Loan Applications -->
     <div class="p-5">
@@ -104,6 +106,9 @@
         }
 
         fetchLoans();
+        function closePage() {
+            window.close(); // Closes the current tab or window
+        }
     </script>
 </body>
 </html>
