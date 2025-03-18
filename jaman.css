@@ -164,3 +164,14 @@
 .cs{
     color: #060606;
 }
+@media (max-width: 1024px) {
+    body {
+        font-size: 14px;
+    }
+}
+
+/* Mobile devices (below 768px) */
+@media (max-width: 768px) {
+    body {
+        font-size: 12px;
+    }
