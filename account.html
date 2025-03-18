@@ -1,0 +1,43 @@
+<!-- Account Section: User & Admin Interfaces -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Management - Account Section</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-r from-blue-500 to-purple-600 min-h-screen flex items-center justify-center">
+    <div class="max-w-lg w-full p-6 bg-white shadow-2xl rounded-2xl transform transition-all hover:scale-105">
+        <h2 class="text-3xl font-extrabold text-center text-gray-800 mb-6">Account Balance</h2>
+        
+        <!-- View Balance Button -->
+        <div class="text-center">
+            <button id="viewBalanceBtn" class="px-6 py-3 bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold text-lg rounded-lg shadow-lg hover:shadow-xl transition-all">View Balance</button>
+        </div>
+        
+        <!-- Balance Display (Initially Hidden) -->
+        <div id="balanceContainer" class="p-6 bg-blue-50 text-blue-900 rounded-xl text-center mt-6 hidden shadow-md">
+            <p class="text-xl font-semibold">Current Balance:</p>
+            <p id="balance" class="text-4xl font-extrabold text-green-600 animate-pulse">₹0.00</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("viewBalanceBtn").addEventListener("click", () => {
+            document.getElementById("balanceContainer").classList.remove("hidden");
+            fetchBalance();
+            setInterval(fetchBalance, 5000); // Auto-refresh balance every 5 seconds
+        });
+        
+        function fetchBalance() {
+            fetch('/api/get_balance/')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("balance").innerText = `$${data.balance.toFixed(2)}`;
+                })
+                .catch(error => console.error("Error fetching balance:", error));
+        }
+    </script>
+</body>
+</html>
