@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Transaction Approval</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        @media (max-width: 640px) {
+            .responsive-container {
+                padding: 1rem;
+            }
+        }
+        .action-btn {
+            transition: transform 0.2s ease-in-out;
+        }
+        .action-btn:hover {
+            transform: scale(1.1);
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        .close-btn:hover {
+            transform: scale(1.2) rotate(15deg);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-500 via-purple-500 to-indigo-500 flex items-center justify-center min-h-screen p-4 animate__animated animate__fadeIn">
+    <div class="w-full max-w-3xl bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-2xl animate__animated animate__zoomIn responsive-container relative">
+        <button onclick="closePage()" class="close-btn">❌</button>
+        <h2 class="text-4xl font-extrabold text-gray-900 dark:text-white text-center mb-6 tracking-wide">🔍 Admin Transaction Approval</h2>
+        <table class="w-full border-collapse border border-gray-300 dark:border-gray-700 animate__animated animate__fadeInUp">
+            <thead>
+                <tr class="bg-gray-200 dark:bg-gray-800">
+                    <th class="border p-3">Sender</th>
+                    <th class="border p-3">Receiver</th>
+                    <th class="border p-3">Amount</th>
+                    <th class="border p-3">Action</th>
+                </tr>
+            </thead>
+            <tbody id="transactionTable" class="bg-white dark:bg-gray-900">
+                <!-- Dynamic Transactions will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", fetchPendingTransactions);
+
+        async function fetchPendingTransactions() {
+            try {
+                let response = await fetch('/api/get-pending-transactions/');
+                let data = await response.json();
+                let tableBody = document.getElementById('transactionTable');
+                tableBody.innerHTML = "";
+
+                data.transactions.forEach(tx => {
+                    let row = `<tr class='border animate__animated animate__fadeIn'>
+                        <td class='border p-3'>${tx.sender}</td>
+                        <td class='border p-3'>${tx.receiver}</td>
+                        <td class='border p-3'>${tx.amount}</td>
+                        <td class='border p-3'>
+                            <button onclick="approveTransaction(${tx.id})" class='action-btn bg-green-500 text-white px-3 py-1 rounded-lg shadow-lg hover:bg-green-600'>Approve</button>
+                            <button onclick="holdTransaction(${tx.id})" class='action-btn bg-yellow-500 text-white px-3 py-1 rounded-lg shadow-lg hover:bg-yellow-600'>Hold</button>
+                            <button onclick="rejectTransaction(${tx.id}, ${tx.amount}, '${tx.sender}')" class='action-btn bg-red-500 text-white px-3 py-1 rounded-lg shadow-lg hover:bg-red-600'>Reject</button>
+                        </td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            } catch (error) {
+                console.error("Error fetching transactions", error);
+            }
+        }
+
+        async function approveTransaction(id) {
+            await processTransaction(id, 'approve');
+        }
+        async function holdTransaction(id) {
+            await processTransaction(id, 'hold');
+        }
+        async function rejectTransaction(id, amount, sender) {
+            await processTransaction(id, 'reject', amount, sender);
+        }
+
+        async function processTransaction(id, action, amount = null, sender = null) {
+            try {
+                let response = await fetch(`/api/process-transaction/`, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ id, action, amount, sender })
+                });
+
+                let result = await response.json();
+                if (result.success) {
+                    alert(`✅ Transaction ${action}d successfully!`);
+                    fetchPendingTransactions();
+                } else {
+                    alert(`❌ Failed to ${action} transaction: ` + result.message);
+                }
+            } catch (error) {
+                alert("⚠️ Error processing transaction.");
+            }
+        }
+
+        function closePage() {
+            window.close();
+        }
+    </script>
+</body>
+</html>
