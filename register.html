@@ -1,55 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="register.css">
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Register</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    <style>
+        body {
+          background: linear-gradient(135deg, #f6d365, #fda085);
+          font-family: 'Poppins', sans-serif;
+          margin: 0;
+          padding: 30px;
+        }
+      
+        header h1 {
+          text-align: center;
+          margin-bottom: 20px;
+          color: #fff;
+          text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+      
+        .form-container {
+          background-color: rgba(255, 255, 255, 0.95);
+          max-width: 1000px;
+          margin: auto;
+          padding: 40px;
+          border-radius: 20px;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+      
+        .form-container h2 {
+          text-align: center;
+          margin-bottom: 25px;
+          color: #333;
+        }
+      
+        form {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 20px;
+        }
+      
+        label {
+          font-weight: 600;
+          color: #444;
+          margin-bottom: 5px;
+        }
+      
+        input {
+          padding: 12px;
+          border: 2px solid #f0f0f0;
+          border-radius: 10px;
+          font-size: 14px;
+          background-color: #ffffffee;
+          color: #222;
+          transition: border-color 0.3s ease;
+        }
+      
+        input:focus {
+          border-color: #ff6f61;
+          outline: none;
+        }
+      
+        button {
+          grid-column: span 2;
+          padding: 12px;
+          background: #ff6f61;
+          color: white;
+          font-weight: bold;
+          border: none;
+          border-radius: 12px;
+          cursor: pointer;
+          transition: background 0.3s, box-shadow 0.3s;
+        }
+      
+        button:hover {
+          background: #e4574d;
+          box-shadow: 0 6px 15px rgba(255, 111, 97, 0.4);
+        }
+      
+        p {
+          grid-column: span 2;
+          text-align: center;
+          color: #222;
+        }
+      
+        a {
+          color: #ff6f61;
+          text-decoration: none;
+        }
+      
+        a:hover {
+          text-decoration: underline;
+        }
+      
+        #recaptcha-container {
+          grid-column: span 2;
+          margin-top: 10px;
+        }
+      
+        @media (max-width: 768px) {
+          form {
+            grid-template-columns: 1fr;
+          }
+          button, p, #recaptcha-container {
+            grid-column: span 1;
+          }
+        }
+      </style>
 </head>
 <body>
-    <header>
-        <h1>Register</h1>
-    </header>
-    
-    <section class="form-container">
-        <h2>Create an Account</h2>
-        <form id="registerForm">
-            <label for="name">First Name</label>
-            <input type="text" id="name" placeholder="First Name" required>
-            <label for="name">Last Name</label>
-            <input type="text" id="name" placeholder="Last Name" required>
+  <section class="form-container">
+    <h1>Register</h1>
+    <form id="registerForm">
+      <div class="field-group">
+        <label for="first-name">First Name</label>
+        <input type="text" id="first-name" placeholder="John" required>
+      </div>
 
-            <label for="father-name">Father's Name</label>
-            <input type="text" id="father-name" placeholder="Father's Name" required>
+      <div class="field-group">
+        <label for="last-name">Last Name</label>
+        <input type="text" id="last-name" placeholder="cena" required>
+      </div>
 
-            <label for="profile-photo">Profile Photo</label>
-            <input type="file" id="profile-photo" accept="image/*" required>
+      <div class="field-group">
+        <label for="father-name">Father's Name</label>
+        <input type="text" id="father-name" placeholder="Father Name" required>
+      </div>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" placeholder="Email" required>
+      <div class="field-group">
+        <label for="profile-photo">Profile Photo</label>
+        <input type="file" id="profile-photo" accept="image/*" required>
+      </div>
 
-            <label for="name">password</label>
-            <input type="password" id="Password" placeholder="Password" required>
+      <div class="field-group">
+        <label for="aadhar-card">Aadhar Card</label>
+        <input type="file" id="aadhar-card" accept="image/*" required>
+      </div>
 
-            <label for="name">*Confirm password</label>
-            <input type="password" id="Password" placeholder="*Confirm Password" required>
+      <div class="field-group">
+        <label for="signature">Signature</label>
+        <input type="file" id="signature" accept="image/*" required>
+      </div>
 
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" placeholder="Phone Number" required>
-            <div id="recaptcha-container"></div>
-            <button type="button" id="sendOtp">Send OTP</button>
+      <div class="field-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+      </div>
 
-            <label for="otp">Enter OTP</label>
-            <input type="text" id="otp" placeholder="Enter OTP">
-            <button type="button" id="verifyOtp">Verify OTP</button>
+      <div class="field-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="username123" required>
+      </div>
 
-            <button type="submit">Register</button>
-        </form>
-        <p>Already have an account? <a href="index.html">Login here</a></p>
-    </section>
+      <div class="field-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="********" required>
+      </div>
 
-    <script src="register.js"></script>
+      <div class="field-group">
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" placeholder="********" required>
+      </div>
+
+      <div class="field-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91XXXXXXXXXX" required>
+      </div>
+
+      <div id="recaptcha-container"></div>
+
+      <div class="button-group">
+        <button type="button" id="sendOtp">Send OTP</button>
+        <input type="text" id="otp" class="otp-input" placeholder="Enter OTP">
+        <button type="button" id="verifyOtp">Verify OTP</button>
+      </div>
+
+      <button type="submit" class="submit-button">Register</button>
+    </form>
+    <p>Already have an account? <a href="index.html">Login here</a></p>
+  </section>
+
+  <script src="register.js"></script>
 </body>
 </html>

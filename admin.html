@@ -133,14 +133,52 @@
             color: #111;
             box-shadow: 0 0 15px #00eaff;
         }
+        #user-options {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 10px;
+            margin-top: 10px;
+            transition: all 0.3s ease-in-out;
+            animation: slideIn 0.3s ease forwards;
+        }
+        
+        #user-options button {
+            font-weight: bold;
+            font-size: 15px;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        
+        #user-options button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Optional subtle animation */
+        @keyframes slideIn {
+            0% {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
     </style>
 </head>
 <body>
     <div class="sidebar">
         <h2>Admin Panel</h2>
+        
+        <marquee behavior="scroll" direction="right" class="Cs" >Welcome To Manasa  </marquee>    
         <ul class="list-group">
             <li class="list-group-item"><button class="btn btn-dark w-100">Dashboard</button></li>
-            <li class="list-group-item"><button class="btn btn-dark w-100">Users</button></li>
+            <li class="list-group-item"> 
+                <button class="btn btn-dark w-100" onclick="window.location.href='users_options.html'">Users</button>
+
+            </li>
             <li class="list-group-item"><button class="btn btn-dark w-100"  onclick="window.location.href='trans.html'">Transactions</button></li>
             <li class="list-group-item"><button class="btn btn-dark w-100" onclick="window.location.href='loanmanage.html'"  >Loans</button></li>
            
@@ -179,7 +217,6 @@
         </div>
     </div>
     
-     <marquee behavior="scroll" direction="right" class="Cs" >Welcome To Manasa Admin Dashboard</marquee>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             document.addEventListener("click", function (event) {
@@ -209,6 +246,11 @@ function closeProfile() {
 
 // Close the profile when clicking outside of it
 document.getElementById("profile-overlay").addEventListener("click", closeProfile);
+function toggleUserOptions() {
+    const options = document.getElementById('user-options');
+    options.style.display = options.style.display === 'none' ? 'block' : 'none';
+}
+
 
     </script>
 </body>

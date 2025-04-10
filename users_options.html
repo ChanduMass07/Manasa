@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Options</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      background: linear-gradient(to right, #f2fcfe, #1c92d2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+    }
+
+    .container-box {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+    }
+
+    .container-box h2 {
+      margin-bottom: 30px;
+      font-weight: 700;
+      color: #333;
+    }
+
+    .btn-option {
+      margin: 10px 0;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      width: 100%;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-option:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-users {
+      background-color: #17a2b8;
+      color: white;
+    }
+
+    .btn-deposit {
+      background-color: #28a745;
+      color: white;
+    }
+
+    .btn-withdraw {
+      background-color: #dc3545;
+      color: white;
+    }
+
+    @media (max-width: 576px) {
+      .container-box {
+        padding: 25px 20px;
+      }
+
+      .btn-option {
+        font-size: 16px;
+        padding: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container-box">
+    <h2>User Controls</h2>
+    <button class="btn btn-option btn-users" onclick="window.location.href='allusers.html'">All Users</button>
+    <button class="btn btn-option btn-deposit" onclick="window.location.href='deposit.html'">Deposit</button>
+    <button class="btn btn-option btn-withdraw" onclick="window.location.href='withdraw.html'">Withdraw</button>
+  </div>
+
+</body>
+</html>
