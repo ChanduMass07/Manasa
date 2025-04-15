@@ -1,53 +1,41 @@
-/* General styles */
+/* Base styles */
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
     padding: 20px;
-    background-image: url(rg.webp);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+    min-height: 100vh;
+    background: url('rg.webp') no-repeat center center/cover;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
 }
 
-/* Header styles */
+/* Header */
 header {
     width: 100%;
     padding: 15px 0;
     background: rgba(0, 0, 0, 0.3);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 1s ease-in-out;
-    text-align: center;
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1000;
+    z-index: 10;
+    text-align: center;
 }
 
 header h1 {
-    font-size: 2rem;
-    color: #fff;
     margin: 0;
+    color: white;
+    font-size: 2rem;
 }
 
-/* Centered content container */
-.main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding-top: 80px;
-    gap: 20px;
-}
-
-/* Form container */
+/* Form Container */
 .form-container {
     background: rgba(255, 255, 255, 0.3);
-    padding: 30px;
+    backdrop-filter: blur(5px);
+    padding: 35px;
+    margin-top: 100px;
     border-radius: 15px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     width: 100%;
@@ -56,12 +44,11 @@ header h1 {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    margin: 20px;
 }
 
 .form-container h2 {
     margin-bottom: 15px;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     color: #333;
 }
 
@@ -75,7 +62,7 @@ input {
     font-size: 16px;
 }
 
-/* Button */
+/* Buttons */
 button {
     width: 100%;
     padding: 14px;
@@ -94,7 +81,7 @@ button:hover {
     transform: scale(1.05);
 }
 
-/* Password container */
+/* Password Field */
 .password-container {
     position: relative;
     display: flex;
@@ -114,36 +101,44 @@ button:hover {
     color: gray;
 }
 
-/* Responsive adjustments */
+/* Media Queries */
+
+/* Tablets (landscape & portrait) */
 @media (max-width: 1024px) {
+    .form-container {
+        padding: 30px;
+        margin-top: 80px;
+    }
+
     header h1 {
         font-size: 1.8rem;
     }
 
     .form-container h2 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
     }
 }
 
+/* Phones and small tablets */
 @media (max-width: 768px) {
     body {
         padding: 10px;
+    }
+
+    .form-container {
+        padding: 25px;
+        margin-top: 80px;
     }
 
     header h1 {
         font-size: 1.6rem;
     }
 
-    .form-container {
-        padding: 20px;
-    }
-
     .form-container h2 {
         font-size: 1.3rem;
     }
 
-    input,
-    button {
+    input, button {
         font-size: 15px;
         padding: 12px;
     }
@@ -153,17 +148,22 @@ button:hover {
     }
 }
 
+/* Mobile phones (smallest screens) */
 @media (max-width: 480px) {
     header h1 {
         font-size: 1.4rem;
+    }
+
+    .form-container {
+        padding: 20px;
+        width: 95%;
     }
 
     .form-container h2 {
         font-size: 1.2rem;
     }
 
-    input,
-    button {
+    input, button {
         font-size: 14px;
         padding: 10px;
     }
