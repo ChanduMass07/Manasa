@@ -4,8 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Register</title>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+ 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     
@@ -143,18 +142,49 @@
       </div>
 
       <div class="field-group">
+        <label for="AadharNumber">AadharNumber</label>
+        <input type="text" id="aadhar-number" placeholder="Enter AadharNumber Here" required>
+      </div>
+
+      <div class="field-group">
+        <label for="PAN-CARD">Pan Card</label>
+        <input type="file" id="PAN-card" accept="image/*" required>
+      </div>
+
+      <div class="field-group">
+        <label for="PAN-Number">PAN-Number</label>
+        <input type="text" id="PAN-Number" placeholder="Enter PAN Number Here" required>
+      </div>
+
+      <div class="field-group">
         <label for="signature">Signature</label>
         <input type="file" id="signature" accept="image/*" required>
+      </div>
+
+     
+      <div class="field-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91XXXXXXXXXX" required>
+      </div>
+
+      <div class="field-group">
+        <label for="account-type">Account Type</label>
+        <select id="account-type" required>
+          <option value="" disabled selected>Select Account Type</option>
+          <option value="savings">Savings</option>
+          <option value="current">Current</option>
+        </select>
+      </div>
+      
+
+      <div class="field-group">
+        <label for="username">Username</label>
+        <input type="text" id="username" placeholder="username123" required>
       </div>
 
       <div class="field-group">
         <label for="email">Email</label>
         <input type="email" id="email" placeholder="you@example.com" required>
-      </div>
-
-      <div class="field-group">
-        <label for="username">Username</label>
-        <input type="text" id="username" placeholder="username123" required>
       </div>
 
       <div class="field-group">
@@ -165,11 +195,6 @@
       <div class="field-group">
         <label for="confirm-password">Confirm Password</label>
         <input type="password" id="confirm-password" placeholder="********" required>
-      </div>
-
-      <div class="field-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" id="phone" placeholder="+91XXXXXXXXXX" required>
       </div>
 
       <div id="recaptcha-container"></div>
@@ -185,6 +210,7 @@
     <p>Already have an account? <a href="index.html">Login here</a></p>
   </section>
 
-  <script src="register.js"></script>
+  <script  src="register.js"></script>
+
 </body>
 </html>
